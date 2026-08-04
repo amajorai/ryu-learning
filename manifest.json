@@ -1,0 +1,85 @@
+{
+  "id": "@ryu/learning",
+  "name": "Learning",
+  "version": "1.0.0",
+  "category": "Knowledge & Memory",
+  "description": "Learning loop: turn chats and runs into reusable skills, gated by the approval Inbox, with an experience log of what was learned.",
+  "icon": "mortarboard-01",
+  "iconDither": { "from": 342, "to": 308, "direction": "left" },
+  "surfaces": {
+    "gateway": { "support": "none" },
+    "core": { "support": "none" },
+    "desktop": { "support": "full" },
+    "island": { "support": "limited" },
+    "mobile": { "support": "limited" },
+    "extension": { "support": "none" },
+    "web": { "support": "full" },
+    "cli": { "support": "list" }
+  },
+  "engines": {
+    "ryu": ">=0.1.0"
+  },
+  "runnables": [
+    {
+      "id": "learning-companion",
+      "name": "Learning",
+      "kind": "companion",
+      "config": {
+        "label": "Learning",
+        "ui_entry": "./dist/index.html",
+        "ui_format": "html"
+      }
+    }
+  ],
+  "requires": {
+    "apps": [
+      {
+        "id": "@ryu/skills",
+        "min_version": "1.0.0"
+      }
+    ]
+  },
+  "permission_grants": ["learning:crud"],
+  "permission_levels": [
+    {
+      "id": "learning.view",
+      "label": "Can view",
+      "description": "Read the experience log and the skills the learning loop has produced."
+    },
+    {
+      "id": "learning.capture",
+      "label": "Can teach",
+      "description": "Turn a chat or run into a proposed skill, which goes to the approval inbox before any agent can use it.",
+      "implies": ["learning.view"]
+    }
+  ],
+  "companion": {
+    "label": "Learning",
+    "icon": "mortarboard-01"
+  },
+  "contributes": {
+    "settings_tabs": [
+      {
+        "id": "learning.settings",
+        "title": "Learning",
+        "scope": "node",
+        "view": "learning"
+      }
+    ],
+    "context_menu_items": [
+      {
+        "id": "learning.make-skill",
+        "label": "Make a skill from this chat",
+        "icon": "mortarboard-01",
+        "anchor": "conversation",
+        "capability": "learning.synthesizeSkill",
+        "feedback": {
+          "loading": "Making a skill from this chat…",
+          "success": "Learned skill: ",
+          "error": "Couldn't create a skill from this chat"
+        },
+        "order": 100
+      }
+    ]
+  }
+}

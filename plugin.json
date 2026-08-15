@@ -1,0 +1,18 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "ryu.learning",
+  "version": "1.0.0",
+  "description": "Learning loop: turn chats and runs into reusable skills, gated by the approval Inbox, with an experience log of what was learned.",
+  "keywords": [
+    "learning",
+    "skills",
+    "memory",
+    "improvement"
+  ],
+  "extensions": {
+    "com.ryuhq.ryu": {
+      "id": "@ryu/learning",
+      "displayName": "Learning"
+    }
+  }
+}
